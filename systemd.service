@@ -1,0 +1,23 @@
+[Unit]
+Description=Markdown poster
+
+[Service]
+ExecStart={{caminho para o "./dist/index.js"}}
+Restart=always
+User={{Seu user}}
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+Environment=QUOTES_FOLDER_NAME="{{ Diretorio com a fila de posts}}"
+Environment=BASE_DIR={{Diretorio base dos outros diretórios}}
+Environment=QUOTED_TAG="{{ Tag de um post pronto para ser postado}}"
+Environment=PUBLISHED_TAG="{{ Tag de um post postado}}"
+Environment=ERROR_TAG="{{ Tag de um  post com erro ao postar }}"
+Environment=POST_TO_DELETE_TAG="{{ Tag de um post para ser deletado}}"
+Environment=DELETED_TAG="{{ Tag de um post deletado}}"
+Environment=POST_ID_HEADER_NAME="{{ Compo do Header que identifica o ID do post }}"
+Environment=BASE_URL="{{ API usada para publicar os posts }}"
+Environment=DIVIDER="{{ Sequencia que divide o headers e o body do post }}"
+Environment=API_KEY="{{ Chave de postagem da api }}"
+
+[Install]
+WantedBy=multi-user.target
