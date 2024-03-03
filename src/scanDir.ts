@@ -2,8 +2,6 @@ import { readdirSync } from 'fs'
 import path from 'path'
 
 export function scanDir(dir: string) {
-  console.log('> Scanning directory', dir)
-
   const files: string[] = []
 
   function scan(subdir: string = '') {

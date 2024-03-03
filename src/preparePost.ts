@@ -9,8 +9,6 @@ export interface PostData {
 }
 
 export function preparePost(content: string, title: string) {
-  console.log('> Preparing post', title)
-
   if (title.trim().length < 2) {
     throw new Error('Title must have at least 2 characters')
   }

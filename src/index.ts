@@ -54,8 +54,6 @@ async function bootstrap() {
     const postData = preparePost(fileContent, path.basename(filePath))
 
     if (postData.isToDelete) {
-      console.log('> Deleting post', postData.postId)
-
       if (!postData.postId) throw new Error('No postId to delete')
       const response = await api.delete(`posts/${postData.postId}`)
 
@@ -71,8 +69,6 @@ async function bootstrap() {
     }
 
     if (postData.postId) {
-      console.log('> Updating post', postData.postId)
-
       const response = await api.put(`posts/${postData.postId}`, postData)
 
       if (response.data?.ok && response.data?.postId) {
@@ -84,8 +80,6 @@ async function bootstrap() {
       return
     }
 
-    console.log('> Creating post for file', filePath)
-
     const response = await createPost(postData)
 
     if (response.data?.ok && response.data?.postId) {
@@ -94,8 +88,6 @@ async function bootstrap() {
       setPostAsError(fileContent, filePath, `${response.data}`)
     }
   }
-
-  console.log("> Finished. It's time to sleep. (or just sleep)")
 }
 
 cron.schedule('*/30 * * * * *', bootstrap)
