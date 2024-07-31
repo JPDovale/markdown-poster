@@ -1,12 +1,12 @@
-import { postIdHeaderName } from '.'
+import { postIdHeaderName } from ".";
 
 export function replacePostId(content: string, postId: string) {
-  const lines = content.split('\n')
-  const postIdLineIndex = lines.findIndex((line) =>
-    line.includes(postIdHeaderName),
-  )
+	const lines = content.split("\n");
+	const postIdLineIndex = lines.findIndex((line) =>
+		line.includes(postIdHeaderName),
+	);
 
-  lines[postIdLineIndex] = `${postIdHeaderName} ${postId}`
+	lines[postIdLineIndex] = `${postIdHeaderName}: ${postId}`;
 
-  return lines.join('\n')
+	return lines.join("\n");
 }

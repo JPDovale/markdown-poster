@@ -1,24 +1,24 @@
-import { readdirSync } from 'fs'
-import path from 'path'
+import { readdirSync } from "node:fs";
+import path from "node:path";
 
 export function scanDir(dir: string) {
-  const files: string[] = []
+	const files: string[] = [];
 
-  function scan(subdir: string = '') {
-    const fullPath = path.resolve(dir, subdir)
+	function scan(subdir = "") {
+		const fullPath = path.resolve(dir, subdir);
 
-    const dirEntries = readdirSync(fullPath, { withFileTypes: true })
+		const dirEntries = readdirSync(fullPath, { withFileTypes: true });
 
-    for (const dirEntry of dirEntries) {
-      if (dirEntry.isDirectory()) {
-        scan(dirEntry.name)
-      } else {
-        files.push(dirEntry.path.concat(`/${dirEntry.name}`))
-      }
-    }
-  }
+		for (const dirEntry of dirEntries) {
+			if (dirEntry.isDirectory()) {
+				scan(dirEntry.name);
+			} else {
+				files.push(dirEntry.path.concat(`/${dirEntry.name}`));
+			}
+		}
+	}
 
-  scan()
+	scan();
 
-  return files
+	return files;
 }
